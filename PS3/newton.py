@@ -21,7 +21,7 @@ class Newton(object):
         """Return a root of f(x) = 0, using Newton's method, starting from
         initial guess x0"""
         x = x0
-        for i in xrange(self._maxiter):
+        for i in range(self._maxiter):
             fx = self._f(x)
             if N.linalg.norm(fx) < self._tol:
                 return x
@@ -34,5 +34,5 @@ class Newton(object):
         if fx is None:
             fx = self._f(x)
         Df_x = F.ApproximateJacobian(self._f, x, self._dx)
-        h = N.linalg.solve(N.matrix(Df_x), N.matrix(fx))
-        return x + h
+        h = N.linalg.solve(N.matrix(Df_x), N.matrix(fx))  # does it need an except here?
+        return x - h
